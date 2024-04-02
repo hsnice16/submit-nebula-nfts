@@ -1,0 +1,34 @@
+.header-container {
+  align-items: center;
+  background-color: var(--header-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.75rem;
+  width: 100%;
+}
+
+.header-container .logo {
+  width: 12rem;
+  height: 4rem;
+}
+
+.header-button__container [data-testid="rk-connect-button"] {
+  padding: 0.75rem 1.25rem;
+  border: 1px solid;
+  border-image-source: var(--primary-gradient-color);
+  border-image-slice: 1;
+  background: -webkit-linear-gradient(var(--primary-gradient-color));
+  font-size: 1.55rem;
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+}
+
+.header-button__container
+  [data-testid="rk-connect-button"]:is(::before, ::after) {
+  display: none;
+}
+
+.header-button__container [data-testid="rk-connect-button"]:hover {
+  transform: scale(1);
+}
