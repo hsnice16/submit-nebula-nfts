@@ -10,7 +10,7 @@ export function useGetNebulas(address) {
 
   useEffect(() => {
     async function fetchNebulas() {
-      if (provider) {
+      if (provider && address) {
         try {
           setIsLoading(true);
           setError("");
