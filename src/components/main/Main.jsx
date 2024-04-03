@@ -1,7 +1,18 @@
 import { Error, Success, Info, Landing } from "../index";
 import "./Main.css";
+import { useAccount } from "wagmi";
+import { useGetNebulas } from "../../hooks";
 
 export function Main() {
+  const { address } = useAccount();
+  const { nebulas, isLoading, error } = useGetNebulas(address);
+
+  console.log({
+    nebulas,
+    isLoading,
+    error,
+  });
+
   return (
     <main className="main-container">
       {/* <Error message="Sorry you don’t hold any Nebulas" /> */}
