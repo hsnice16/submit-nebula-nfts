@@ -1,4 +1,4 @@
-import { Error, Success, Info, Landing } from "../index";
+import { Landing } from "../index";
 import "./Main.css";
 import { useAccount } from "wagmi";
 import { useGetNebulas } from "../../hooks";
