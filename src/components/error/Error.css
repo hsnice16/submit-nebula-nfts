@@ -1,0 +1,11 @@
+.error-img__container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.error-img__container .right-star {
+  margin-top: -1.2rem;
+  margin-left: -1rem;
+}
