@@ -4,3 +4,7 @@ export * from "./main/Main";
 export * from "./success/Success";
 export * from "./info/Info";
 export * from "./landing/Landing";
+export * from "./loader-modal/LoaderModal";
+export * from "./carousel/Carousel";
+export * from "./steps/Steps";
+export * from "./banner/Banner";

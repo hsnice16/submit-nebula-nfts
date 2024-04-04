@@ -3,6 +3,7 @@ import RandomTwo from "./random-two.avif";
 import { useState } from "react";
 import NavigateBefore from "./navigate-before.svg";
 import NavigateNext from "./navigate-next.svg";
+import "./Carousel.css";
 
 const IMAGES = [RandomOne, RandomTwo];
 
@@ -30,6 +31,7 @@ export function Carousel() {
       <div>
         {IMAGES.map((image, index) => (
           <img
+            key={index}
             className="carousel-img"
             style={{
               transform: `translateX(${(index - activeImageIndex) * 100}%)`,

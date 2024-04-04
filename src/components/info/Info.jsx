@@ -1,10 +1,22 @@
 import "./Info.css";
+import { useMemo } from "react";
+import { useMain } from "../../context";
 
-export function Info({ nebulaCount }) {
+export function Info() {
+  const { nebulasCount } = useMain();
+
+  const buttonText = useMemo(() => {
+    if (nebulasCount <= 50) {
+      return "Submit all Nebulas";
+    }
+
+    return "Submit 50/" + nebulasCount + " Nebulas";
+  }, [nebulasCount]);
+
   return (
     <div className="main-sub__container">
       <h1 className="main-sub__container-head">
-        You hold {nebulaCount} Nebulas
+        You hold {nebulasCount} Nebulas
       </h1>
 
       <p className="main-sub__container-para info-para">
@@ -15,9 +27,7 @@ export function Info({ nebulaCount }) {
         <a href="/">here</a>.
       </p>
 
-      <button className="info-button__submit">
-        Submit 50/{nebulaCount} Nebulas
-      </button>
+      <button className="info-button__submit">{buttonText}</button>
     </div>
   );
 }

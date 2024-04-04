@@ -1,1 +1,2 @@
-export * from "./useGetNebulas";
+export * from "./useGetNebulasCount";
+export * from "./useGetSubmittedNebulasCount";

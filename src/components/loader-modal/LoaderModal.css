@@ -1,0 +1,25 @@
+.loader-modal {
+  position: absolute;
+  inset: 0;
+  background-color: var(--modal-background-color);
+  display: flex;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.loader-modal .loader {
+  margin: auto;
+  width: 36rem;
+  height: 24rem;
+  border-radius: 2rem;
+  background-color: var(--header-background-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.8rem;
+}
+
+.loader p {
+  font-size: 2rem;
+}
