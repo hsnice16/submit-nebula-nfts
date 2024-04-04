@@ -1,4 +1,4 @@
-import { Landing, Info, Error } from "../index";
+import { Landing, Info, Error, Success } from "../index";
 import "./Main.css";
 
 export function Main({ children }) {
@@ -8,3 +8,4 @@ export function Main({ children }) {
 Main.Info = (props) => <Info {...props} />;
 Main.Landing = (props) => <Landing {...props} />;
 Main.Error = (props) => <Error {...props} />;
+Main.Success = (props) => <Success {...props} />;

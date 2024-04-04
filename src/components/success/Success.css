@@ -4,6 +4,10 @@
   line-height: 1.5em;
 }
 
+.success-para__first span {
+  font-weight: 600;
+}
+
 .success-link__social {
   margin-top: 2rem;
   width: 8rem;

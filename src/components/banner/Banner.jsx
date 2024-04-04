@@ -7,7 +7,9 @@ export function Banner({ submittedNebulasCount }) {
 
   return (
     <div className="banner">
-      A total {submittedNebulasCount} Nebulas have been submitted so far 🎉🎉
+      A total {submittedNebulasCount} Nebula
+      {submittedNebulasCount === 1 ? " has" : "s have"} been submitted so far
+      🎉🎉
       <button className="banner-action">
         <img src={Close} alt="close" />
       </button>

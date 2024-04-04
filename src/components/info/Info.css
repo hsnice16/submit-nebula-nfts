@@ -22,3 +22,26 @@
   color: var(--font-primary-color);
   border: none;
 }
+
+.info-button__submit:disabled {
+  pointer-events: none;
+  cursor: unset;
+  opacity: 0.5;
+}
+
+.info-warning {
+  font-size: 1.5rem;
+  color: var(--banner-text-color);
+}
+
+.info-warning a {
+  text-decoration: none;
+  font-weight: 600;
+  color: inherit;
+  margin-left: 0.25rem;
+}
+
+.info-error {
+  font-size: 1.5rem;
+  color: var(--error-color);
+}
