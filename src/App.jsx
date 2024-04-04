@@ -14,7 +14,7 @@ function App() {
 
   const loadingMessage = useMemo(() => {
     if (isNebulasCountLoading) {
-      return "Loading Nebulas Count...";
+      return "Loading Nebulas...";
     }
 
     return "";

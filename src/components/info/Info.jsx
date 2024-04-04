@@ -1,9 +1,9 @@
 import "./Info.css";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useMain } from "../../context";
 
 export function Info() {
-  const { nebulasCount } = useMain();
+  const { nebulasCount, nebulaIds } = useMain();
 
   const buttonText = useMemo(() => {
     if (nebulasCount <= 50) {
@@ -12,6 +12,22 @@ export function Info() {
 
     return "Submit 50/" + nebulasCount + " Nebulas";
   }, [nebulasCount]);
+
+  const handleDownload = useCallback(() => {
+    const nebulaIdsString = nebulaIds.join("\n");
+    const blob = new Blob([nebulaIdsString], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "nebula_ids.txt");
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, [nebulaIds]);
 
   return (
     <div className="main-sub__container">
@@ -24,7 +40,7 @@ export function Info() {
         batches of 50.
         <br />
         Download a text file containing all your Nebula IDs by clicking{" "}
-        <a href="/">here</a>.
+        <button onClick={handleDownload}>here</button>.
       </p>
 
       <button className="info-button__submit">{buttonText}</button>
