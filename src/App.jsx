@@ -1,7 +1,13 @@
 import "@rainbow-me/rainbowkit/styles.css";
 import "./App.css";
 import { Header, LoaderModal } from "./components";
-import { Home, NoNebulas, SomethingWrong, SubmitNebulas } from "./pages";
+import {
+  Home,
+  NoNebulas,
+  SomethingWrong,
+  SubmitNebulas,
+  NebulasSubmitted,
+} from "./pages";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useMain } from "./context";
 import { useEffect, useMemo } from "react";
@@ -14,7 +20,7 @@ function App() {
 
   const loadingMessage = useMemo(() => {
     if (isNebulasCountLoading) {
-      return "Loading Nebulas...";
+      return "Getting Nebulas...";
     }
 
     return "";
@@ -44,6 +50,7 @@ function App() {
         <Route path="/no-nebulas" element={<NoNebulas />} />
         <Route path="/error" element={<SomethingWrong />} />
         <Route path="/submit-nebulas" element={<SubmitNebulas />} />
+        <Route path="/nebulas-submitted" element={<NebulasSubmitted />} />
       </Routes>
       <LoaderModal loadingMessage={loadingMessage} />
     </div>
