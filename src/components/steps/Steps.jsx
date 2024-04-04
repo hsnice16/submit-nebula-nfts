@@ -1,3 +1,5 @@
+import "./Steps.css";
+
 const STEPS = [
   {
     title: "Connect Wallet",

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { MainProvider } from "./context";
 
 import {
   RainbowKitProvider,
@@ -11,6 +12,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygonMumbai } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+import { BrowserRouter } from "react-router-dom";
 
 const { chains, provider, webSocketProvider } = configureChains(
   Number(process.env.REACT_APP_IS_MAINNET) ? [] : [polygonMumbai],
@@ -40,7 +42,11 @@ root.render(
         chains={chains}
         theme={darkTheme({ accentColor: "#2fa3ff" })}
       >
-        <App />
+        <BrowserRouter>
+          <MainProvider>
+            <App />
+          </MainProvider>
+        </BrowserRouter>
       </RainbowKitProvider>
     </WagmiConfig>
   </React.StrictMode>

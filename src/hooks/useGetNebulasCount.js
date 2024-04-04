@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Contract } from "ethers";
 import { useProvider } from "wagmi";
 
-export function useGetNebulas(address) {
+export function useGetNebulasCount(address) {
   const provider = useProvider();
-  const [nebulas, setNebulas] = useState([]);
+  const [nebulasCount, setNebulasCount] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,22 +17,12 @@ export function useGetNebulas(address) {
 
           const contract = new Contract(
             process.env.REACT_APP_ERC_721_CONTRACT_ADDRESS,
-            [
-              "function balanceOf(address owner) view returns (uint256)",
-              "function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)",
-            ],
+            ["function balanceOf(address owner) view returns (uint256)"],
             provider
           );
 
-          const balance = await contract.balanceOf(address);
-          const nebulas = [];
-
-          for (let i = 0; i < balance; i++) {
-            const tokenId = await contract.tokenOfOwnerByIndex(address, i);
-            nebulas.push(tokenId);
-          }
-
-          setNebulas(nebulas);
+          const nebulasCount = await contract.balanceOf(address);
+          setNebulasCount(Number(nebulasCount));
         } catch (error) {
           setError(error.message);
         } finally {
@@ -44,5 +34,9 @@ export function useGetNebulas(address) {
     fetchNebulas();
   }, [address, provider]);
 
-  return { nebulas, isLoading, error };
+  return {
+    nebulasCount,
+    isNebulasCountLoading: isLoading,
+    nebulasCountError: error,
+  };
 }

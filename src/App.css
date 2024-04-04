@@ -3,9 +3,13 @@
 :root {
   --background-color: #070b0d;
   --header-background-color: #181c1f;
+  --modal-background-color: #181c1f8c;
 
   --font-primary-color: #ffffff;
   --font-secondary-color: #cdcdcd;
+
+  --banner-background-color: #706644;
+  --banner-text-color: #ffd95a;
 
   --primary-color: #2fa3ff;
   --primary-dark-color: #2f57ff;

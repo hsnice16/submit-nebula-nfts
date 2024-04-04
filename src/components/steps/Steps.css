@@ -1,0 +1,42 @@
+.steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.steps-container .step {
+  background-color: var(--header-background-color);
+  text-align: center;
+  position: relative;
+  border-radius: 1rem;
+  width: 22rem;
+  height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 2.8rem 1rem 0;
+}
+
+.steps-container .step-count {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.8rem;
+}
+
+.steps-container .step-title {
+  font-weight: 600;
+}
+
+.steps-container .step-description {
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--font-secondary-color);
+  max-width: 24rem;
+}

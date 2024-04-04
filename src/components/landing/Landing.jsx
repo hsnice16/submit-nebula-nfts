@@ -1,10 +1,13 @@
 import "./Landing.css";
-import { Steps } from "./Steps";
-import { Carousel } from "./Carousel";
+import { Carousel, Steps, Banner } from "../index";
+import { useGetSubmittedNebulasCount } from "../../hooks";
 
 export function Landing() {
+  const { submittedNebulasCount } = useGetSubmittedNebulasCount();
+
   return (
     <div className="main-sub__container landing-container">
+      <Banner submittedNebulasCount={submittedNebulasCount} />
       <h1 className="main-sub__container-head">
         Welcome to Nebula Odyssey: Upgrade Your Collection!
       </h1>
