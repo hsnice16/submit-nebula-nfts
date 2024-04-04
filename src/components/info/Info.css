@@ -4,10 +4,13 @@
   line-height: 1.5em;
 }
 
-.info-para a {
-  text-decoration: none;
+.info-para button {
+  background-color: transparent;
+  border: none;
   font-weight: 600;
   color: var(--font-secondary-color);
+  cursor: pointer;
+  font-size: inherit;
 }
 
 .info-button__submit {

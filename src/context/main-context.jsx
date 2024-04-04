@@ -1,6 +1,5 @@
-import { useAccount } from "wagmi";
 import { createContext, useContext, useMemo } from "react";
-import { useGetNebulasCount } from "../hooks";
+import { useGetNebulas } from "../hooks";
 
 const MainContext = createContext();
 
@@ -9,17 +8,17 @@ export function useMain() {
 }
 
 export function MainProvider({ children }) {
-  const { address } = useAccount();
-  const { nebulasCount, isNebulasCountLoading, nebulasCountError } =
-    useGetNebulasCount(address);
+  const { nebulasCount, isNebulasCountLoading, nebulasCountError, nebulaIds } =
+    useGetNebulas();
 
   const value = useMemo(
     () => ({
       nebulasCount,
       isNebulasCountLoading,
       nebulasCountError,
+      nebulaIds,
     }),
-    [isNebulasCountLoading, nebulasCount, nebulasCountError]
+    [isNebulasCountLoading, nebulasCount, nebulasCountError, nebulaIds]
   );
 
   return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
