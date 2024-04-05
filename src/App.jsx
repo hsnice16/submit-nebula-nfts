@@ -38,6 +38,8 @@ function App() {
       } else if (nebulasCount > 0) {
         navigate("/submit-nebulas");
       }
+    } else {
+      navigate("/");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -29,10 +29,17 @@ export function useSubmitNebulas() {
           signer
         );
 
-        await erc721Contract.setApprovalForAll(
-          process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
-          true
+        const isApproved = await erc721Contract.isApprovedForAll(
+          await signer.getAddress(),
+          process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS
         );
+
+        if (!isApproved) {
+          await erc721Contract.setApprovalForAll(
+            process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
+            true
+          );
+        }
 
         const contract = new Contract(
           process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
