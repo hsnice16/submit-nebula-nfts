@@ -1,4 +1,4 @@
-import { useSigner, useProvider } from "wagmi";
+import { useSigner } from "wagmi";
 import { useState, useCallback } from "react";
 import { Contract } from "ethers";
 import { SubmitterContractABI, Erc721ContractABI } from "../constants";
