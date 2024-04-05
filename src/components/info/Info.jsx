@@ -4,6 +4,8 @@ import { useMain } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { useSubmitNebulas } from "../../hooks";
 
+const BATCH_COUNT = 2;
+
 export function Info() {
   const { nebulasCount, nebulaIds, isNebulasCountLoading } = useMain();
   const [nebulasCountToShow, setNebulasCountToShow] = useState(nebulasCount);
@@ -26,12 +28,12 @@ export function Info() {
 
   useEffect(() => {
     if (submitNebulasSuccess && !isNebulasCountUpdatedRef.current) {
-      if (nebulasCountToShow <= 50) {
+      if (nebulasCountToShow <= BATCH_COUNT) {
         navigate("/nebulas-submitted");
       } else {
         isNebulasCountUpdatedRef.current = true;
-        setNebulasCountToShow((prevValue) => prevValue - 50);
-        setNebulaIdsToDeposit((prevValue) => prevValue.slice(50));
+        setNebulasCountToShow((prevValue) => prevValue - BATCH_COUNT);
+        setNebulaIdsToDeposit((prevValue) => prevValue.slice(BATCH_COUNT));
       }
     }
   }, [navigate, nebulasCountToShow, submitNebulasSuccess]);
@@ -45,11 +47,11 @@ export function Info() {
       return "Submitting Nebulas...";
     }
 
-    if (nebulasCountToShow <= 50) {
+    if (nebulasCountToShow <= BATCH_COUNT) {
       return "Submit all Nebulas";
     }
 
-    return "Submit 50/" + nebulasCountToShow + " Nebulas";
+    return "Submit " + BATCH_COUNT + "/" + nebulasCountToShow + " Nebulas";
   }, [isNebulasCountLoading, nebulasCountToShow, submitNebulasLoading]);
 
   const handleDownload = useCallback(() => {
@@ -71,10 +73,10 @@ export function Info() {
   const handleSubmit = useCallback(async () => {
     isNebulasCountUpdatedRef.current = false;
 
-    if (nebulasCountToShow <= 50) {
+    if (nebulasCountToShow <= BATCH_COUNT) {
       await submitNebulas(nebulaIdsToDeposit);
     } else {
-      const idsList = nebulaIdsToDeposit.slice(0, 50);
+      const idsList = nebulaIdsToDeposit.slice(0, BATCH_COUNT);
       await submitNebulas(idsList);
     }
   }, [nebulaIdsToDeposit, nebulasCountToShow, submitNebulas]);
@@ -86,8 +88,8 @@ export function Info() {
       </h1>
 
       <p className="main-sub__container-para info-para">
-        Galileans holding more than 50 Nebulas are requested to submit in the
-        batches of 50.
+        Galileans holding more than {BATCH_COUNT} Nebulas are requested to
+        submit in the batches of {BATCH_COUNT}.
         <br />
         Download a text file containing all your Nebula IDs by clicking{" "}
         <button onClick={handleDownload}>here</button>.
