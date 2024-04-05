@@ -19,14 +19,6 @@ export function Info() {
     txHash,
   } = useSubmitNebulas();
 
-  console.log("nebulasCountToShow", nebulasCountToShow);
-  console.log("nebulaIdsToDeposit", nebulaIdsToDeposit);
-  console.log("isNebulasCountUpdatedRef", isNebulasCountUpdatedRef);
-  console.log("submitNebulasSuccess", submitNebulasSuccess);
-  console.log("txHash", txHash);
-  console.log("submitNebulasError", submitNebulasError);
-  console.log("submitNebulasLoading", submitNebulasLoading);
-
   useEffect(() => {
     setNebulasCountToShow(nebulasCount);
     setNebulaIdsToDeposit(nebulaIds);

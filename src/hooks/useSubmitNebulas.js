@@ -1,7 +1,7 @@
-import { useSigner } from "wagmi";
+import { useSigner, useProvider } from "wagmi";
 import { useState, useCallback } from "react";
 import { Contract } from "ethers";
-import { SubmitterContractABI } from "../constants";
+import { SubmitterContractABI, Erc721ContractABI } from "../constants";
 
 export function useSubmitNebulas() {
   const { data: signer } = useSigner();
@@ -22,6 +22,17 @@ export function useSubmitNebulas() {
         setIsSuccess(false);
         setError("");
         setTxHash("");
+
+        const erc721Contract = new Contract(
+          process.env.REACT_APP_ERC_721_CONTRACT_ADDRESS,
+          Erc721ContractABI,
+          signer
+        );
+
+        await erc721Contract.setApprovalForAll(
+          process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
+          true
+        );
 
         const contract = new Contract(
           process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
