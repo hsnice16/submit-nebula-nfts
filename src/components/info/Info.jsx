@@ -1,13 +1,14 @@
 import "./Info.css";
-import { useMemo, useState, useCallback, useEffect } from "react";
+import { useMemo, useState, useCallback, useEffect, useRef } from "react";
 import { useMain } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { useSubmitNebulas } from "../../hooks";
 
 export function Info() {
-  const { nebulasCount, nebulaIds } = useMain();
+  const { nebulasCount, nebulaIds, isNebulasCountLoading } = useMain();
   const [nebulasCountToShow, setNebulasCountToShow] = useState(nebulasCount);
   const [nebulaIdsToDeposit, setNebulaIdsToDeposit] = useState(nebulaIds);
+  const isNebulasCountUpdatedRef = useRef(false);
 
   const navigate = useNavigate();
   const {
@@ -18,11 +19,25 @@ export function Info() {
     txHash,
   } = useSubmitNebulas();
 
+  console.log("nebulasCountToShow", nebulasCountToShow);
+  console.log("nebulaIdsToDeposit", nebulaIdsToDeposit);
+  console.log("isNebulasCountUpdatedRef", isNebulasCountUpdatedRef);
+  console.log("submitNebulasSuccess", submitNebulasSuccess);
+  console.log("txHash", txHash);
+  console.log("submitNebulasError", submitNebulasError);
+  console.log("submitNebulasLoading", submitNebulasLoading);
+
   useEffect(() => {
-    if (submitNebulasSuccess) {
+    setNebulasCountToShow(nebulasCount);
+    setNebulaIdsToDeposit(nebulaIds);
+  }, [nebulaIds, nebulasCount]);
+
+  useEffect(() => {
+    if (submitNebulasSuccess && !isNebulasCountUpdatedRef.current) {
       if (nebulasCountToShow <= 50) {
         navigate("/nebulas-submitted");
       } else {
+        isNebulasCountUpdatedRef.current = true;
         setNebulasCountToShow((prevValue) => prevValue - 50);
         setNebulaIdsToDeposit((prevValue) => prevValue.slice(50));
       }
@@ -30,6 +45,10 @@ export function Info() {
   }, [navigate, nebulasCountToShow, submitNebulasSuccess]);
 
   const buttonText = useMemo(() => {
+    if (isNebulasCountLoading) {
+      return "...";
+    }
+
     if (submitNebulasLoading) {
       return "Submitting Nebulas...";
     }
@@ -39,7 +58,7 @@ export function Info() {
     }
 
     return "Submit 50/" + nebulasCountToShow + " Nebulas";
-  }, [nebulasCountToShow, submitNebulasLoading]);
+  }, [isNebulasCountLoading, nebulasCountToShow, submitNebulasLoading]);
 
   const handleDownload = useCallback(() => {
     const nebulaIdsString = nebulaIdsToDeposit.join("\n");
@@ -58,6 +77,8 @@ export function Info() {
   }, [nebulaIdsToDeposit]);
 
   const handleSubmit = useCallback(async () => {
+    isNebulasCountUpdatedRef.current = false;
+
     if (nebulasCountToShow <= 50) {
       await submitNebulas(nebulaIdsToDeposit);
     } else {
@@ -83,12 +104,12 @@ export function Info() {
       <button
         className="info-button__submit"
         onClick={handleSubmit}
-        disabled={submitNebulasLoading}
+        disabled={submitNebulasLoading || isNebulasCountLoading}
       >
         {buttonText}
       </button>
 
-      {submitNebulasSuccess && txHash ? (
+      {txHash ? (
         <p className="main-sub__container-para info-warning">
           Check the transaction on explorer -
           <a
