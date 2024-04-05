@@ -21,6 +21,7 @@
   font-weight: 300;
   color: var(--font-primary-color);
   border: none;
+  cursor: pointer;
 }
 
 .info-button__submit:disabled {

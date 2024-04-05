@@ -21,6 +21,7 @@ export function useSubmitNebulas() {
         setIsLoading(true);
         setIsSuccess(false);
         setError("");
+        setTxHash("");
 
         const contract = new Contract(
           process.env.REACT_APP_SUBMITTER_CONTRACT_ADDRESS,
@@ -28,21 +29,23 @@ export function useSubmitNebulas() {
           signer
         );
 
-        const tx = await contract.submitNebulas(idsList);
-        await tx.wait();
+        const tx = await contract.submitNebulas(idsList, {
+          gasLimit: 2000000,
+        });
 
         setTxHash(tx.hash);
+        await tx.wait();
         setIsSuccess(true);
-
-        setTimeout(() => {
-          setIsSuccess(false);
-          setTxHash("");
-        }, 2000);
       } catch (error) {
         console.log("Submit Nebulas Error:", error);
         setError("Error submitting Nebulas");
       } finally {
         setIsLoading(false);
+
+        setTimeout(() => {
+          setIsSuccess(false);
+          setTxHash("");
+        }, 3000);
       }
     },
     [signer]
