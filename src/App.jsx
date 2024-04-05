@@ -8,13 +8,14 @@ import {
   SubmitNebulas,
   NebulasSubmitted,
 } from "./pages";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useMain } from "./context";
 import { useEffect, useMemo } from "react";
 import { useAccount } from "wagmi";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { address } = useAccount();
   const { nebulasCountError, nebulasCount, isNebulasCountLoading } = useMain();
 
@@ -28,19 +29,19 @@ function App() {
 
   useEffect(() => {
     if (address) {
-      if (nebulasCountError.length) {
+      if (location.pathname === "/nebulas-submitted") {
+        navigate(location.pathname);
+      } else if (nebulasCountError.length) {
         navigate("/error");
-      }
-
-      if (nebulasCount === 0) {
+      } else if (nebulasCount === 0) {
         navigate("/no-nebulas");
-      }
-
-      if (nebulasCount > 0) {
+      } else if (nebulasCount > 0) {
         navigate("/submit-nebulas");
       }
     }
-  }, [address, navigate, nebulasCount, nebulasCountError.length]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, nebulasCount, nebulasCountError.length]);
 
   return (
     <div className="App">
