@@ -1,6 +1,7 @@
 import "./Landing.css";
 import { Carousel, Steps, Banner } from "../index";
 import { useGetSubmittedNebulasCount } from "../../hooks";
+import YouTube from "../success/youtube.svg";
 
 export function Landing() {
   const { submittedNebulasCount } = useGetSubmittedNebulasCount();
@@ -18,6 +19,9 @@ export function Landing() {
       </p>
 
       <h2 className="main-sub__container-head">How does it work? </h2>
+      <a className="landing-link__youtube" href="/">
+        view on <img src={YouTube} alt="youtube logo" /> YouTube
+      </a>
       <Steps />
 
       <h4 className="landing-h4">Got Questions?</h4>

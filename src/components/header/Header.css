@@ -13,22 +13,57 @@
   height: 4rem;
 }
 
-.header-button__container [data-testid="rk-connect-button"] {
+.header-nav__container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.header-nav__container a {
+  text-decoration: none;
+  color: var(--font-secondary-color);
+}
+
+.header-button__connect {
   padding: 0.75rem 1.25rem;
-  border: 1px solid;
-  border-image-source: var(--primary-gradient-color);
-  border-image-slice: 1;
-  background: -webkit-linear-gradient(var(--primary-gradient-color));
+  background: var(--primary-gradient-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  width: 8.5rem;
+  height: 3.5rem;
+  overflow: hidden;
+}
+
+.header-button__connect::after {
+  content: "";
+  position: absolute;
+  inset: 0.15rem;
+  border-radius: 0.5rem;
+  background-color: var(--header-background-color);
+}
+
+.header-button__connect > span {
+  background-color: var(--primary-dark-color);
+  background-image: var(--primary-gradient-color);
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+
   font-size: 1.55rem;
   font-family: "Inter", sans-serif;
-  font-weight: normal;
-}
+  font-weight: 500;
 
-.header-button__container
-  [data-testid="rk-connect-button"]:is(::before, ::after) {
-  display: none;
-}
-
-.header-button__container [data-testid="rk-connect-button"]:hover {
-  transform: scale(1);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,7 +1,27 @@
 import "./Success.css";
-import Google from "./google.svg";
+import Telegram from "./telegram.svg";
+import Twitter from "./twitter.svg";
+import YouTube from "./youtube.svg";
 import { useGetDepositedNebulasCount } from "../../hooks";
 import { useMemo } from "react";
+
+const SOCIALS = [
+  {
+    name: "telegram",
+    icon: Telegram,
+    link: "/",
+  },
+  {
+    name: "twitter",
+    icon: Twitter,
+    link: "/",
+  },
+  {
+    name: "youtube",
+    icon: YouTube,
+    link: "/",
+  },
+];
 
 export function Success() {
   const {
@@ -38,9 +58,15 @@ export function Success() {
         stay connected for updated information
       </p>
 
-      <a href="/" className="success-link__social">
-        <img src={Google} alt="google" />
-      </a>
+      <ul className="success-link__social-container">
+        {SOCIALS.map((social) => (
+          <li key={social.name}>
+            <a href={social.link}>
+              <img src={social.icon} alt={social.name} />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
