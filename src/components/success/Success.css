@@ -8,13 +8,11 @@
   font-weight: 600;
 }
 
-.success-link__social {
+.success-link__social-container {
   margin-top: 2rem;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 1rem;
-  background-color: var(--header-background-color);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
+  list-style: none;
 }

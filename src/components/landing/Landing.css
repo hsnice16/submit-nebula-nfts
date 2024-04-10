@@ -5,6 +5,20 @@
   position: relative;
 }
 
+.landing-link__youtube {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: var(--font-secondary-color);
+  margin-top: -1rem;
+  margin-bottom: -0.5rem;
+}
+
+.landing-link__youtube img {
+  width: 4rem;
+  height: 2rem;
+}
+
 .landing-h4 {
   align-self: flex-start;
   color: var(--font-secondary-color);
