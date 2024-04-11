@@ -47,7 +47,6 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  /* max-width: 150rem; */
   min-height: 100vh;
   margin: auto;
 }
@@ -70,6 +69,12 @@ body {
   font-weight: 300;
   font-size: 2rem;
   text-align: center;
+}
+
+.mobile-app__para {
+  margin: auto;
+  transform: translateY(-100%);
+  max-width: 28rem;
 }
 
 @media screen and (max-width: 640px) {
