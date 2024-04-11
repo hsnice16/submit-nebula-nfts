@@ -1,0 +1,27 @@
+.faq-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100rem;
+  padding-top: 2.4rem;
+}
+
+.faq-container__list {
+  list-style: none;
+  margin: 2.4rem 0;
+}
+
+.faq-container__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+  color: var(--font-secondary-color);
+  margin-bottom: 2rem;
+}
+
+.faq-container__list h4 {
+  font-size: 2rem;
+}

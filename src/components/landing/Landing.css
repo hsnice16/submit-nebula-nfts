@@ -1,8 +1,12 @@
 .landing-container {
   width: 100%;
-  padding-top: 8rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
   position: relative;
+}
+
+.landing-container > h2 {
+  font-size: 2.75rem;
 }
 
 .landing-link__youtube {
@@ -17,13 +21,4 @@
 .landing-link__youtube img {
   width: 4rem;
   height: 2rem;
-}
-
-.landing-h4 {
-  align-self: flex-start;
-  color: var(--font-secondary-color);
-  font-weight: 600;
-  font-size: 2.4rem;
-  margin-top: 3rem;
-  margin-bottom: -1.2rem;
 }
