@@ -8,3 +8,4 @@ export * from "./loader-modal/LoaderModal";
 export * from "./carousel/Carousel";
 export * from "./steps/Steps";
 export * from "./faq/FAQ";
+export * from "./footer/Footer";
