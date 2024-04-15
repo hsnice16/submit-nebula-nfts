@@ -1,0 +1,27 @@
+.header-container {
+  align-items: center;
+  background-color: var(--header-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.75rem;
+  width: 100%;
+}
+
+.header-container .logo {
+  width: 12rem;
+  height: 4rem;
+}
+
+.header-nav__container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.header-nav__container a {
+  text-decoration: none;
+  color: var(--font-secondary-color);
+}

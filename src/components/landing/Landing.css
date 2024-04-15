@@ -1,0 +1,24 @@
+.landing-container {
+  width: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  position: relative;
+}
+
+.landing-container > h2 {
+  font-size: 2.75rem;
+}
+
+.landing-link__youtube {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: var(--font-secondary-color);
+  margin-top: -1rem;
+  margin-bottom: -0.5rem;
+}
+
+.landing-link__youtube img {
+  width: 4rem;
+  height: 2rem;
+}
