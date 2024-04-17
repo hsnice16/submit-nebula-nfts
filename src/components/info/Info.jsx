@@ -4,7 +4,7 @@ import { useMain } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { useSubmitNebulas } from "../../hooks";
 
-const BATCH_COUNT = 2;
+const BATCH_COUNT = 50;
 
 export function Info() {
   const { nebulasCount, nebulaIds, isNebulasCountLoading } = useMain();

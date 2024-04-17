@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 
 const config = {
   apiKey: process.env.REACT_APP_ALCHEMY_API,
-  network: Network.MATIC_MUMBAI,
+  network: process.env.REACT_APP_IS_MAINNET ? "" : Network.ETH_SEPOLIA,
 };
 const alchemy = new Alchemy(config);
 
