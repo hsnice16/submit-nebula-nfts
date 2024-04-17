@@ -61,7 +61,7 @@ export function Success() {
       <ul className="success-link__social-container">
         {SOCIALS.map((social) => (
           <li key={social.name}>
-            <a href={social.link}>
+            <a href={social.link} target="_blank" rel="noreferrer">
               <img src={social.icon} alt={social.name} />
             </a>
           </li>

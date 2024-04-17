@@ -12,15 +12,33 @@ export function Header({ isMobile }) {
       {isMobile ? null : (
         <ul className="header-nav__container">
           <li>
-            <a href="https://www.galileoprotocol.io/">Galielo Protocol</a>
+            <a
+              href="https://www.galileoprotocol.io/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Galielo Protocol
+            </a>
           </li>
 
           <li>
-            <a href="https://nebula.galileoprotocol.io/">Nebula Odyssey</a>
+            <a
+              href="https://nebula.galileoprotocol.io/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Nebula Odyssey
+            </a>
           </li>
 
           <li>
-            <a href="https://opensea.io/collection/nebula-pnft-genesis-collection">Opensea</a>
+            <a
+              href="https://opensea.io/collection/nebula-pnft-genesis-collection"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Opensea
+            </a>
           </li>
 
           <li>
