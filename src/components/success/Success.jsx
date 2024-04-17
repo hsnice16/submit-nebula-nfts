@@ -9,17 +9,17 @@ const SOCIALS = [
   {
     name: "telegram",
     icon: Telegram,
-    link: "/",
+    link: "https://t.me/galileoprotocolcommunity",
   },
   {
     name: "twitter",
     icon: Twitter,
-    link: "/",
+    link: "https://twitter.com/galileoprotocol",
   },
   {
     name: "youtube",
     icon: YouTube,
-    link: "/",
+    link: "https://www.youtube.com/@galileoprotocol.official",
   },
 ];
 
