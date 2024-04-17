@@ -10,12 +10,17 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { sepolia } from "wagmi/chains";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { BrowserRouter } from "react-router-dom";
 
 const { chains, provider, webSocketProvider } = configureChains(
   Number(process.env.REACT_APP_IS_MAINNET) ? [] : [sepolia],
-  [publicProvider()]
+  [
+    process.env.REACT_APP_ALCHEMY_API
+      ? alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_API })
+      : publicProvider(),
+  ]
 );
 
 const { connectors } = getDefaultWallets({
