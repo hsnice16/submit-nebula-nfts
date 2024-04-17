@@ -10,10 +10,8 @@ const config = {
 };
 const alchemy = new Alchemy(config);
 
-const address = "0xE44929013D7fe39Cde322bAce06EA654061E2E01";
-
 export function useGetNebulas() {
-  // const { address } = useAccount();
+  const { address } = useAccount();
   const [nebulasCount, setNebulasCount] = useState();
   const [nebulaIds, setNebulaIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +52,7 @@ export function useGetNebulas() {
     }
 
     fetchNebulas();
-  }, []);
+  }, [address]);
 
   return {
     nebulasCount,
