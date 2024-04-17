@@ -59,9 +59,7 @@ export function useSubmitNebulas() {
         console.log("Submit Nebulas Error:", error);
 
         if (
-          [error?.message?.toLowerCase(), error?.toLowerCase()]?.includes(
-            "user rejected the request"
-          )
+          [error?.message?.toLowerCase()]?.includes("user rejected the request")
         ) {
           setError("User rejected the request");
         } else {
