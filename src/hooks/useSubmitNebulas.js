@@ -48,9 +48,7 @@ export function useSubmitNebulas() {
           signer
         );
 
-        const tx = await contract.submitNebulas(idsList, {
-          gasLimit: 2000000,
-        });
+        const tx = await contract.submitNebulas(idsList);
 
         setTxHash(tx.hash);
         await tx.wait();
