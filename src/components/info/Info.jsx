@@ -2,7 +2,7 @@ import "./Info.css";
 import { useMemo, useState, useCallback, useEffect, useRef } from "react";
 import { useMain } from "../../context";
 import { useNavigate } from "react-router-dom";
-import { useSubmitNebulas } from "../../hooks";
+import { useSubmitNebulas, useGetDepositedNebulasCount } from "../../hooks";
 
 const BATCH_COUNT = 50;
 
@@ -11,7 +11,14 @@ export function Info() {
   const [nebulasCountToShow, setNebulasCountToShow] = useState(nebulasCount);
   const [nebulaIdsToDeposit, setNebulaIdsToDeposit] = useState(nebulaIds);
   const isNebulasCountUpdatedRef = useRef(false);
+  const {
+    isDepositedNebulasCountLoading,
+    depostedNebulasCount,
+    depositedNebulasCountError,
+  } = useGetDepositedNebulasCount();
 
+  const [depostedNebulasCountToShow, setDepositedNebulasCountToShow] =
+    useState(0);
   const navigate = useNavigate();
   const {
     submitNebulas,
@@ -27,6 +34,10 @@ export function Info() {
   }, [nebulaIds, nebulasCount]);
 
   useEffect(() => {
+    setDepositedNebulasCountToShow(depostedNebulasCount ?? 0);
+  }, [depostedNebulasCount]);
+
+  useEffect(() => {
     if (submitNebulasSuccess && !isNebulasCountUpdatedRef.current) {
       if (nebulasCountToShow <= BATCH_COUNT) {
         navigate("/nebulas-submitted");
@@ -34,6 +45,7 @@ export function Info() {
         isNebulasCountUpdatedRef.current = true;
         setNebulasCountToShow((prevValue) => prevValue - BATCH_COUNT);
         setNebulaIdsToDeposit((prevValue) => prevValue.slice(BATCH_COUNT));
+        setDepositedNebulasCountToShow((prevValue) => prevValue + BATCH_COUNT);
       }
     }
   }, [navigate, nebulasCountToShow, submitNebulasSuccess]);
@@ -88,9 +100,13 @@ export function Info() {
       </h1>
 
       <p className="main-sub__container-para info-para">
-        Galileans holding more than {BATCH_COUNT} Nebulas are requested to
-        submit in the batches of {BATCH_COUNT}.
-        <br />
+        {nebulasCountToShow > BATCH_COUNT ? (
+          <>
+            Galileans holding more than {BATCH_COUNT} Nebulas are requested to
+            submit in the batches of {BATCH_COUNT}.
+            <br />
+          </>
+        ) : null}
         Download a text file containing all your Nebula IDs by clicking{" "}
         <button onClick={handleDownload}>here</button>.
       </p>
@@ -102,6 +118,14 @@ export function Info() {
       >
         {buttonText}
       </button>
+
+      {!depositedNebulasCountError &&
+      !isDepositedNebulasCountLoading &&
+      depostedNebulasCountToShow ? (
+        <p className="main-sub__container-para info-message">
+          Already Submitted: {depostedNebulasCountToShow}
+        </p>
+      ) : null}
 
       {txHash ? (
         <p className="main-sub__container-para info-warning">

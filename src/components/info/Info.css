@@ -46,3 +46,7 @@
   font-size: 1.5rem;
   color: var(--error-color);
 }
+
+.info-message {
+  font-size: 1.5rem;
+}

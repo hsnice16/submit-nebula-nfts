@@ -47,16 +47,14 @@ export function Success() {
     <div className="main-sub__container">
       <p className="main-sub__container-para success-para__first">
         Congratulations! Your <span>{messageToShow}</span> Nebulas have been
-        successfully submitted for upgrade. please note that the new Nebulas
-        airdrop date will be announced by April last week. Stay tuned for further
-        updates and enjoy the anticipation of your upgraded collection!
+        successfully submitted for upgrade. Please note that the new Nebulas
+        airdrop date will be announced by April last week. Stay tuned for
+        further updates and enjoy the anticipation of your upgraded collection!
       </p>
 
       <h2 className="main-sub__container-head">Next Steps</h2>
 
-      <p className="main-sub__container-para">
-        Connect with us
-      </p>
+      <p className="main-sub__container-para">Connect with us</p>
 
       <ul className="success-link__social-container">
         {SOCIALS.map((social) => (
