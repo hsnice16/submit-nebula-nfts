@@ -8,12 +8,12 @@ const STEPS = [
   {
     title: "Submit Nebulas",
     description:
-      "Ready to upgrade? Submit your existing Nebulas by clicking on “Submit” button",
+      "Click on “Submit” button, to approve the Nebula transfer and submit your nebulas.",
   },
   {
     title: "Distribution",
     description:
-      "At a certain date Galileo Protocol will distribute the Nebula Odyssey NFTs to your same wallet on Ethereum network",
+      "Galileo Protocol will airdrop the upgraded Nebula Odyssey NFTs to the same wallet on Ethereum network. Date to be announced by April last week.",
   },
 ];
 
