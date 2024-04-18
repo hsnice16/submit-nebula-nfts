@@ -12,12 +12,14 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useMain } from "./context";
 import React, { useEffect, useMemo } from "react";
 import { useAccount } from "wagmi";
+import { useGetDepositedNebulasCount } from "./hooks";
 
 export function DesktopApp() {
   const navigate = useNavigate();
   const location = useLocation();
   const { address } = useAccount();
   const { nebulasCountError, nebulasCount, isNebulasCountLoading } = useMain();
+  const { depostedNebulasCount } = useGetDepositedNebulasCount();
 
   const loadingMessage = useMemo(() => {
     if (isNebulasCountLoading) {
@@ -34,7 +36,11 @@ export function DesktopApp() {
       } else if (nebulasCountError.length) {
         navigate("/error");
       } else if (nebulasCount === 0) {
-        navigate("/no-nebulas");
+        if (depostedNebulasCount > 0) {
+          navigate("/nebulas-submitted");
+        } else {
+          navigate("/no-nebulas");
+        }
       } else if (nebulasCount > 0) {
         navigate("/submit-nebulas");
       }
@@ -43,7 +49,7 @@ export function DesktopApp() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address, nebulasCount, nebulasCountError.length]);
+  }, [address, nebulasCount, nebulasCountError.length, depostedNebulasCount]);
 
   return (
     <>
