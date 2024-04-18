@@ -19,15 +19,16 @@ export function DesktopApp() {
   const location = useLocation();
   const { address } = useAccount();
   const { nebulasCountError, nebulasCount, isNebulasCountLoading } = useMain();
-  const { depostedNebulasCount } = useGetDepositedNebulasCount();
+  const { depostedNebulasCount, isDepositedNebulasCountLoading } =
+    useGetDepositedNebulasCount();
 
   const loadingMessage = useMemo(() => {
-    if (isNebulasCountLoading) {
+    if (isNebulasCountLoading || isDepositedNebulasCountLoading) {
       return "Getting Nebulas...";
     }
 
     return "";
-  }, [isNebulasCountLoading]);
+  }, [isNebulasCountLoading, isDepositedNebulasCountLoading]);
 
   useEffect(() => {
     if (address) {
